@@ -28,5 +28,5 @@ public class Match {
         public int getGuestGoals() {
             return guestGoals;
         }
-    }
+
 }

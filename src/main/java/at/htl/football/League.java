@@ -1,3 +1,11 @@
+package at.htl.football;
+
+import at.htl.football.Team;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class League {
 
     private List<Team> teams = new ArrayList<>();
@@ -12,7 +20,7 @@ public class League {
 
     private Team findOrCreateTeam(String team) {
         for (int i = 0; i < teams.size(); i++) {
-            if (teams.get(i).equals(team)) {
+            if (teams.get(i).getName().compareTo(team) == 0) {
                 return teams.get(i);
             }
         }
@@ -21,8 +29,15 @@ public class League {
         return teams.get(teams.size() - 1);
     }
 
-    public List<Team> getTable(){
-        for(int i = 0; i < teams.size(); i++){
-            System.out.printf(teams.get(i).getName() + " \t\t\t   " + teams.get(i).getPoints() + "\t" + teams.get(i).getDraws()+ "\t" + teams.get(i).getDefeats() + "\t" + teams.get(i).getGoalsShot()+ "\t" + teams.get(i).getGoalsReceived()  + "%n");        }
+    public List<Team> getTable() {
+        Collections.sort(teams);
+        System.out.println("Team                   Pts  W   D   L   GF   GA   GD");
+
+        for (int i = 0; i < teams.size(); i++) {
+            System.out.printf(teams.get(i).getName() + " \t\t\t   " + teams.get(i).getPoints() +
+                    "\t" +teams.get(i).getWins()+ "\t" + teams.get(i).getDraws() + "\t" + teams.get(i).getDefeats() +
+                    "\t" + teams.get(i).getGoalsShot() + "\t" + teams.get(i).getGoalsReceived() + "\t" +
+                    (teams.get(i).getGoalsShot() - teams.get(i).getGoalsReceived()) +"%n");
+        } return teams;
     }
 }
